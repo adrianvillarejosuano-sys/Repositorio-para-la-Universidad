@@ -128,7 +128,7 @@ int quedanBarcos(char tablero[TAM][TAM]) {
     int i, j;
     for (i = 0; i < 12; i++) {
         for (j = 0; j < 12; j++) {
-            if (tablero[i][j] == 'B') {
+            if (tablero[i][j] == 'B') {         // Revisa si quedan barcos para el tablero que se le introduzca.
                 return 1;
             }
         }
@@ -139,14 +139,14 @@ int quedanBarcos(char tablero[TAM][TAM]) {
 void mostrarTablero (char t[TAM][TAM]){
     int i, j;
     printf("   ");
-    for (i = 0; i < TAM; i++)
+    for (i = 0; i < TAM; i++)           // Usamos un bucle para escribir los numeros de las casillas.
     printf("%2d ", i + 1);
     printf("\n");
 
 
     for (i = 0; i < TAM; i++){
         printf("%2d ", i + 1);
-        for (j = 0; j < TAM; j++){
+        for (j = 0; j < TAM; j++){      // Usamos otro bucle respecto a 2 contadores para mostrar cada casilla 12x12.
             if (t[i][j] == mar)
             printf(" * ");
             else
@@ -159,7 +159,7 @@ void mostrarTablero (char t[TAM][TAM]){
 void mostrarTableroCPU (char t[TAM][TAM]){      
     int i, j;
     printf("   ");
-    for (i = 0; i < TAM; i++)
+    for (i = 0; i < TAM; i++)                       // Igual que en mostrarTablero marcamos los numeros de filas y columnas
     printf("%2d ", i + 1);
     printf("\n");
 
@@ -170,8 +170,8 @@ void mostrarTableroCPU (char t[TAM][TAM]){
         {
             if (t[i][j] == BARCO)
                 printf(" * ");
-            if (t[i][j] == Tocado)
-                printf(" X ");
+            if (t[i][j] == Tocado)                  // Mostramos el tablero de la maquina , inicialmente solo mostrara el mar.
+                printf(" X ");                      // Mostrara si los tiros son agua o tocado.
             if(t[i][j] == mar)
                 printf(" * ");
             else if (t[i][j] == AGUA)
@@ -184,20 +184,20 @@ void mostrarTableroCPU (char t[TAM][TAM]){
 }
 
 void colocarBarcosJugador(char t[TAM][TAM]){
-    int barcos [6] = {4, 3, 3, 2, 2, 2};
+    int barcos [6] = {4, 3, 3, 2, 2, 2};            // Definimos las casillas que ocupa cada barco dentro del tablero
     int fila, col, dir, filaHum, colHum;
     int i, b;
     int valido;
     
 
     for (b = 0; b < 6; b++){
-        valido = 0;
+        valido = 0;                                                 // Variable para ver si la posicion es valida
 
         while (!valido){
             
             printf("\nColocar barco de tamaño %d\n", barcos[b]);
             printf("Fila inicial: ");
-            scanf("%d", &filaHum);
+            scanf("%d", &filaHum);                                   // Definimos como se va a realizar la colocación de los barcos
             printf("\nColumna inicial: ");
             scanf("%d", &colHum);
             fila = filaHum - 1;
@@ -206,23 +206,23 @@ void colocarBarcosJugador(char t[TAM][TAM]){
             printf("\nOpciones disponibles:\n");
 
             if (col + barcos[b] <= TAM)
-            printf("0 - Horizontal hasta (%d,%d)\n", filaHum, colHum + barcos[b] - 1);
+            printf("0 - Horizontal hasta (%d,%d)\n", filaHum, colHum + barcos[b] - 1);      //revisa si se puede colocar en horizontal.
 
             if (fila + barcos[b] <= TAM)
-            printf("1 - Vertical hasta (%d,%d)\n", filaHum + barcos[b]  - 1, colHum);
+            printf("1 - Vertical hasta (%d,%d)\n", filaHum + barcos[b]  - 1, colHum);       // revisa si se puede colocar en vertical.
 
-            printf("Elige la orientacion del barco:\n ");
+            printf("Elige la orientacion del barco:\n ");                                   // Elige la direccion con 1 y 0
             scanf("%d", &dir);
 
             valido = 1;
-
+            // Aqui revisamos que los barcos no salgan del tamaño de tablero.
             if (dir == 0){
                 if (col + barcos[b] > TAM)
                 valido = 0;
 
                 else{
                     for (i = 0; i < barcos[b]; i++)
-                    if (t[fila][col + i] != mar)
+                    if (t[fila][col + i] != mar)                       
                     valido = 0;
 
                     if (valido)
@@ -248,15 +248,15 @@ void colocarBarcosJugador(char t[TAM][TAM]){
             }
 
             if (!valido)
-            printf("Posicion no valida. Pruebe otra diferente.\n");
+            printf("Posicion no valida. Pruebe otra diferente.\n"); 
 
         }
     }
 }
 
 void colocarBarcosCPU(char t[TAM][TAM]){
-    int barcos[6] = {4, 3, 3, 2, 2, 2};
-    int x, y, dir;
+    int barcos[6] = {4, 3, 3, 2, 2, 2};                 // Tamaño de los barcos.
+    int x, y, dir;                                      // Variables.
     int i, b;
     int colocado;
 
@@ -265,11 +265,11 @@ void colocarBarcosCPU(char t[TAM][TAM]){
 
 
         while (!colocado){
-            x = rand() % TAM;
+            x = rand() % TAM;                           // Define las posiciones de forma aleatoria.
             y = rand() % TAM;
-            dir = rand() % 2; // Dirección
+            dir = rand() % 2; // Dirección aleatoria
             colocado = 1;
-
+            //revisa que el barco no se salga 
             if (dir == 0){
                 if (y + barcos[b] > TAM)
                 colocado = 0;
@@ -315,7 +315,7 @@ void mecanicaDisparos(char jugador[TAM][TAM], char maquina[TAM][TAM]) {
         if (turnoJugador) {
 
             do {
-                printf("Te toca disparar , Introduce fila: ");
+                printf("Te toca disparar , Introduce fila: ");          // pide las coordenadas de tu disparo.
                 scanf("%d", &fila);
                 printf("Introduce columna: ");
                 scanf("%d", &col);
@@ -326,7 +326,7 @@ void mecanicaDisparos(char jugador[TAM][TAM], char maquina[TAM][TAM]) {
                     printf("\nhas fallado\n");
                     if(maquina[fila][col] == AGUA)
                         {
-                            maquina[fila][col] = AGUA;
+                            maquina[fila][col] = AGUA;                    // Revisa si ha tocado o si ha sido agua.
                         }
                     if(maquina[fila][col] == Tocado)
                         {
@@ -336,7 +336,7 @@ void mecanicaDisparos(char jugador[TAM][TAM], char maquina[TAM][TAM]) {
                 else if (maquina[fila][col] == BARCO) {
                     maquina[fila][col] = BARCO;
                     acierto = 1;
-                    printf("\nha tocado , vuelve a tirar\n");
+                    printf("\nha tocado , vuelve a tirar\n");              // Si ha tocado puedes tirar otra vez.
                     
                 }
                 else {
@@ -354,17 +354,17 @@ void mecanicaDisparos(char jugador[TAM][TAM], char maquina[TAM][TAM]) {
         } else {
 
             do {
-                fila = rand() % 12;
+                fila = rand() % 12;                                     // Decide las posiciones aleatoriamente.
                 col = rand() % 12;
 
                 if (jugador[fila][col] == BARCO || jugador[fila][col] == AGUA) {
                     acierto = 0;
                     printf("\nla maquina ha fallado\n");
                 }
-                else if (jugador[fila][col] == BARCO) {
+                else if (jugador[fila][col] == BARCO) {                 
                     jugador[fila][col] = BARCO;
                     acierto = 1;
-                    printf("\nla maquina ha acertado\n");
+                    printf("\nla maquina ha acertado\n");               //revisa si ha acertado la maquina
                 }
                 else {
                     jugador[fila][col] = AGUA;
@@ -398,9 +398,9 @@ int main()
 {
    
     srand(time(NULL));
-    char opcionElegida;
+    char opcionElegida;                             // variable para elegir.
 
-    while(opcionElegida != 's')
+    while(opcionElegida != 's')                     // se repite el juego hasta que quieras salir.    
     {
     printf("\t BIENVENIDO A HUNDIR LA FLOTA\n\n");
 
@@ -409,7 +409,7 @@ int main()
     scanf(" %c" , &opcionElegida);
     printf("\n");
 
-    while(opcionElegida != 's' && opcionElegida != 'p' && opcionElegida != 'm'){
+    while(opcionElegida != 's' && opcionElegida != 'p' && opcionElegida != 'm'){    //revisa que pongas la opcion bien.
 
         printf("selecciona una opcion valida (m), (s), (p): ");
         scanf(" %c" , &opcionElegida);
@@ -437,20 +437,20 @@ int main()
 
 void salir() {
 
-    printf("\n\thasta la proxima!");
+    printf("\n\thasta la proxima!");        // Sale del juego.
     exit(0);
 }
 
 void jugar(){
 
-    char tablero [TAM][TAM];
+    char tablero [TAM][TAM];        //Arrays de dos dimensiones 
     char tablero2 [TAM][TAM];
     
     
     inicializarTablero(tablero);
     inicializarTablero2(tablero2);
     mostrarTablero(tablero);
-    mostrarTableroCPU(tablero2);
+    mostrarTableroCPU(tablero2);                    // Funciones puestas en orden.
     colocarBarcosJugador(tablero);
     colocarBarcosCPU(tablero2);
     mecanicaDisparos(tablero,tablero2);
