@@ -111,5 +111,11 @@ FILE *fichero;
      posicionFichero = fseek(fichero1, -4, SEEK_END); // 4 bytes antes del final
      posicionFichero = fseek(fichero1, 5, SEEK_CUR); // 5 bytes desde la posición actual
      
+// fscanf : 
+
+int fscanf(FILE *fichero, const char *formato, ...); // almacena los datos segun el formato y almacena los valores leidos en las variables  
+
+
+
 //fin.
 }
