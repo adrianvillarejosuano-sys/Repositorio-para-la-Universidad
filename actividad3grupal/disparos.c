@@ -31,15 +31,15 @@ void mecanicaDisparos(char jugador[12][12], char maquina[12][12]) {
                 printf("Introduce columna: ");
                 scanf("%d", &col);
 
-                if (maquina[fila][col] == 'X' || maquina[fila][col] == 'A') {
+                if (maquina[fila][col] == 'X' || maquina[fila][col] == 'A') { //Si ha caido en agua o en tocado da fallo.
                     acierto = 0;
                 }
-                else if (maquina[fila][col] == 'B') {
+                else if (maquina[fila][col] == 'B') {                         //Si toca un barco da acierto.
                     maquina[fila][col] = 'X';
                     acierto = 1;
                 }
                 else {
-                    maquina[fila][col] = 'A';
+                    maquina[fila][col] = 'A';                                 //Si da en agua no da acierto.
                     acierto = 0;
                 }
 
