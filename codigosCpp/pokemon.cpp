@@ -22,7 +22,7 @@ class pokemon
 
             enemigo.vida = enemigo.vida * 0.9;
 
-        };
+        }
     };
 
 int main()
