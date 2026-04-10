@@ -1,54 +1,69 @@
 #include <iostream>
 #include <string>
-
+using namespace std;
 
 class pokemon 
     {
         public:
         //nombre del pokemon
-        std::string nombre;
+        string nombre{"desconocido"};
 
         //tipo del pokemon
-        std::string tipo;
+        string tipo{"???"};
 
         //nivel
-        int nivel;
+        int nivel{0};
 
         //vida
-        double vida;
+        double vida{1};
 
-        //ataque del pokemon
-        void ataque(pokemon& enemigo){
+        //ataque
+        double ataque{0};
 
-            enemigo.vida = enemigo.vida * 0.9;
+        //defensa
+        double defensa{1};
 
+        //combate del pokemon
+        void combate(pokemon& amigo , pokemon& enemigo){
+
+            double daño = (amigo.ataque / enemigo.defensa);
+            enemigo.vida -= daño ;
+
+            if (enemigo.vida < 0)
+                enemigo.vida = 0;
+            
+                cout << amigo.nombre << " ataca a " << enemigo.nombre << "/n";
+                cout << "inflige " << daño << "puntos de daño \n";
+
+        }
+
+        //constructor por defecto y parametrizado 
+        pokemon(string nombre,string tipo, int nivel , double vida, double ataque, double defensa )
+        {
+            this->nombre = nombre ;
+            this->tipo = tipo;
+            this-> nivel = nivel;
+            this->vida = vida;
+            this-> ataque = ataque;
+            this-> defensa = defensa;
+
+        }
+
+        //destructor
+        ~pokemon(){
+            cout << "dtor pokemon" << endl;
+        }
+
+        //revisa si sigue vivo el pokemon
+        bool estaDebilitado(){
+            return vida <= 0;
         }
     };
 
 int main()
 {
 
-    pokemon pikachu;
-
-        pikachu.vida = 70.0;
-        pikachu.nombre = "pikachu";
-        pikachu.tipo = "electrico";
-        pikachu.nivel = 25;
-
-    pokemon charmander;
-
-        charmander.vida = pikachu.vida;
-    
-   pikachu.ataque(charmander);
-
-   charmander.ataque(pikachu);
-
-   std::cout << pikachu.nombre << " tiene " << pikachu.vida << " de vida\n";
-   std::cout << charmander.nombre << " tiene " << charmander.vida << " de vida\n";
-
-   // esperar antes de cerrar la consola
-    std::cout << "Presiona ENTER para salir...";
-    std::cin.get();
+   
 
     return 0;
 }
