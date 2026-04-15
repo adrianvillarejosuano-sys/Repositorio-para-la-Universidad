@@ -5,6 +5,16 @@ using namespace std;
 class pokemon 
     {
         public:
+
+        //variables estaticas:
+
+        static int total;
+
+        //metodos estaticos:
+
+        static string informe();
+
+        // Asigno entre corchetes los valores por defecto
         //nombre del pokemon
         string nombre{"desconocido"};
 
@@ -37,7 +47,7 @@ class pokemon
 
         }
 
-        //constructor por defecto y parametrizado 
+        //constructor parametrizado 
         pokemon(string nombre,string tipo, int nivel , double vida, double ataque, double defensa )
         {
             this->nombre = nombre ;
@@ -47,12 +57,16 @@ class pokemon
             this-> ataque = ataque;
             this-> defensa = defensa;
 
+            //Cada vez que creemos un objeto se suma una al total
+            total++;
         }
 
         //destructor
         ~pokemon(){
-            cout << "dtor pokemon" << endl;
+            cout << "destructor pokemon" << endl;
         }
+
+        
 
         //revisa si sigue vivo el pokemon
         bool estaDebilitado(){
@@ -60,10 +74,26 @@ class pokemon
         }
     };
 
+    //definicion de la variable estatica iniciada en 0
+    int pokemon::total{0};
+    
+    //definimos el informe
+    string pokemon::informe(){
+        return " numero de pokemons creados :" + to_string(total);
+    }
+
 int main()
 {
 
-   
+   //Creamos instancias de los pokemon iniciales
+   pokemon pikachu("pikachu","electrico",50,100,120,80);
+   pokemon charmander("charmander","fuego",50,90,130,65);
+   pokemon bulbasur("bulbasur","planta",50,140,80,100);
+   pokemon squirtel("squirtel","agua",50,105,105,100);
+
+   //informe de instancias
+   cout << pokemon::informe() << " \n";
+   cout << "final del main\n";
 
     return 0;
 }
