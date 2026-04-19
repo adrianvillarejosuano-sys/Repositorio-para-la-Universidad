@@ -39,14 +39,14 @@ void listaEnteros::extrae(int indice)
 
     //hay que desplazar los elementos de indice + 1 para que ocupen el lugar de indice
 
-    desplaza_abajo(indice + 1);
+    desplaza_abajo(indice);
     longitud--;
 
 }
 void listaEnteros::desplaza_arriba(int indice)
 {
 
-    for(int i = longitud ; i >= indice ; --i){
+    for(int i = longitud - 1; i >= indice ; --i){
 
         elementos[i+1] = elementos [i];
 
@@ -56,8 +56,8 @@ void listaEnteros::desplaza_arriba(int indice)
 }
 void listaEnteros::desplaza_abajo(int indice)
 {
-    for(int i = longitud ; i <= indice ; ++i){
+    for(int i = indice ; i <= longitud -1 ; ++i){
 
-        elementos[i-1] = elementos[i];
+        elementos[i] = elementos[i+1];
     }
 }
