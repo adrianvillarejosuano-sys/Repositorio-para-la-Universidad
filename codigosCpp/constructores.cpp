@@ -5,7 +5,7 @@ using namespace std;
 class pokemon 
 {
 public:
-
+    
     string nombre;
     double vida;
     double ataque;
