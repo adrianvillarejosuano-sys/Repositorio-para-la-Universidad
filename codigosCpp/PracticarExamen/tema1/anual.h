@@ -1,9 +1,10 @@
 #pragma once
 #include "diaSemana.h"
+#include <string>
+
 
 class Anual {
    
-
     public:
 
         //constructor
@@ -22,7 +23,7 @@ class Anual {
 
         //metodos
         bool bisiesto(int ano);
-        int primerDiaNum(enum DiaSemana dia);
+        std::string diaSemanaToString(enum DiaSemana dia);
 
         //metodos estaticos
         DiaSemana primerDiaAno(int ano);

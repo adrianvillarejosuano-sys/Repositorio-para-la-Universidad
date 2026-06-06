@@ -1,6 +1,8 @@
 #include <stdlib.h>
 #include <iostream>
+#include <string>
 #include "anual.h"
+
 
 using namespace std;
 
@@ -16,7 +18,7 @@ int main() {
     //contructor de anual
     Anual ano1(ano);
 
-    cout << "su primer dia del año es un " << ano1.primerDia << "que en numero es " << ano1.primerDiaNum(ano1.primerDia) << endl;
+    cout << "su primer dia del año es un " << ano1.diaSemanaToString(ano1.primerDia) << " que numericamente es el " << ano1.primerDia  << " dia " << endl;
   
 
     return 0;

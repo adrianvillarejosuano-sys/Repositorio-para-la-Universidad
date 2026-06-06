@@ -1,5 +1,7 @@
 #include "anual.h"
+#include <string>
 
+    using namespace std;
     
     //constructor
     Anual::Anual(int ano) {
@@ -41,6 +43,23 @@
         return (DiaSemana) diaSemanaIndex;
     }
 
-    int Anual::primerDiaNum(enum DiaSemana dia) {
-        return (int) dia;
+        string Anual::diaSemanaToString(enum DiaSemana dia) {
+        switch (dia) {
+            case lunes:
+                return "lunes";
+            case martes:
+                return "martes";
+            case miercoles:
+                return "miercoles";
+            case jueves:
+                return "jueves";
+            case viernes:
+                return "viernes";
+            case sabado:
+                return "sabado";
+            case domingo:
+                return "domingo";
+            default:
+                return "dia no valido";
+        };
     }
