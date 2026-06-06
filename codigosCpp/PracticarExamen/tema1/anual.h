@@ -21,7 +21,7 @@ class Anual {
         static DiaSemana diaRef;
 
         //metodos
-        bool bisiesto(int ano){};
+        bool bisiesto(int ano);
         int primerDiaNum(enum DiaSemana dia);
 
         //metodos estaticos
