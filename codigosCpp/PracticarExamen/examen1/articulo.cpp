@@ -43,4 +43,10 @@ using namespace std;
     }
 
 //el metodo virtual no se implementa aqui ya que la clase es abstracta, se implementara en las clases derivadas que hereden de Articulo
+    
 
+//sobrecarga de operadores
+    bool Articulo::operator==(const Articulo& otro) const {
+        //dos articulos son iguales si tienen el mismo codigo
+        return this->codigo == otro.codigo;
+    }
