@@ -35,6 +35,13 @@ Articulo* juguete1 = new Juguete(909, 15.0, "lego", 6);
     cout << "articulo 1: " << Libro1->getNombre() << " Precio con descuento: " << Libro1->getPrecio() << endl;
     cout << "articulo 2: " << juguete1->getNombre() << " Precio con descuento: " << juguete1->getPrecio() << endl;
 
+    //aplicamos la sobrecarga de operadores
+    if(*Libro1 == *juguete1) {
+        cout << "Los articulos son iguales" << endl;
+    } else {
+        cout << "Los articulos son diferentes" << endl;
+    }
+
     //liberamos la memoria dinamica
     delete Libro1; //liberamos el nuevo libro que es el antiguo juguete
     delete juguete1; //liberamos el nuevo juguete que es el antiguo libro
